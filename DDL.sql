@@ -200,7 +200,7 @@ CREATE TABLE LineCook(
   );
    /* Creates a table, MimingsAccount, which is owned by Customer
     It's uniquely identified by customer and has a zero-to-many
-    with HeadChef */
+    with Customer */
 CREATE TABLE MimingsAccount(
   customerID INT(10) NOT NULL,
   rewardsPoints INT(4),
@@ -212,6 +212,10 @@ CREATE TABLE MimingsAccount(
   FOREIGN KEY(customerID) REFERENCES Customer(customerID)
   
   );
+
+/* Creates a table, CustomerAccount, which is inherited from MimingsAccount
+    It's uniquely identified by customer and has a zero-to-many
+    with MimingsAccount */
   
   CREATE TABLE CustomerAccount(
   customerID INT(10) NOT NULL,
@@ -226,6 +230,10 @@ CREATE TABLE MimingsAccount(
   
   );
   
+/* Creates a table, CorporationAccount, which is inherited from MimingsAccount
+    It's uniquely identified by customer and has a zero-to-many
+    with MimingsAccount */
+
   CREATE TABLE CorporationAccount(
   customerID INT(10) NOT NULL,
   corporationName VARCHAR(50),
