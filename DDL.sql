@@ -134,7 +134,7 @@ CREATE TABLE LineCook(
   );
   
   /* Creates a table, HeadChefRecipies, which is created by HeadChef
-    It's uniquely identified by empNumber (surrogate) and recipeName and has a zero-to-many
+    It's uniquely identified by empNumber and recipeName and has a zero-to-many
     with HeadChef */
   CREATE TABLE HeadChefRecipes(
    empNumber INT(10) NOT NULL,
@@ -145,6 +145,98 @@ CREATE TABLE LineCook(
     
   CONSTRAINT HeadChef_HeadChefRecipies_FK
   FOREIGN KEY(empNumber) REFERENCES HeadChef(empNumber)
+  
+  );
+  
+   /* Creates a table, Dishwasher, which is inherited from HourlyEmployee.
+    It's uniquely identified by empNumber (surrogate) and has a zero-to-one
+    with HourlyEmployee */
+  CREATE TABLE Dishwasher(
+   empNumber INT(10) NOT NULL,
+  
+  CONSTRAINT Dishwasher_PK PRIMARY KEY(empNumber),
+    
+  CONSTRAINT HourlyEmployee_Dishwasher_FK
+  FOREIGN KEY(empNumber) REFERENCES HourlyEmployee(empNumber)
+  
+  );
+  
+   /* Creates a table, MaitreD, which is inherited from HourlyEmployee.
+    It's uniquely identified by empNumber (surrogate) and has a zero-to-one
+    with HourlyEmployee */
+  CREATE TABLE MaitreD(
+   empNumber INT(10) NOT NULL,
+  
+  CONSTRAINT MaitreD_PK PRIMARY KEY(empNumber),
+    
+  CONSTRAINT HourlyEmployee_MaitreD_FK
+  FOREIGN KEY(empNumber) REFERENCES HourlyEmployee(empNumber)
+  
+  );
+   /* Creates a table, WaitStaff, which is inherited from HourlyEmployee.
+    It's uniquely identified by empNumber (surrogate) and has a zero-to-one
+    with HourlyEmployee */
+  CREATE TABLE WaitStaff(
+   empNumber INT(10) NOT NULL,
+   tips FLOAT (10),
+  
+  CONSTRAINT WaitStaff_PK PRIMARY KEY(empNumber),
+    
+  CONSTRAINT HourlyEmployee_WaitStaff_FK
+  FOREIGN KEY(empNumber) REFERENCES HourlyEmployee(empNumber)
+  
+  );
+  
+  /* Creates a parent table, Customer, which contains information regarding
+    a customer at Miming's. It's uniquely identified by customerID (surrogate)*/
+  CREATE TABLE Customer(
+  customerID INT(10) NOT NULL,
+  customerName VARCHAR(50),
+  email VARCHAR(60),
+  age INT(3),
+  
+  CONSTRAINT Customer_PK PRIMARY KEY(customerID)
+  
+  );
+   /* Creates a table, MimingsAccount, which is owned by Customer
+    It's uniquely identified by customer and has a zero-to-many
+    with HeadChef */
+CREATE TABLE MimingsAccount(
+  customerID INT(10) NOT NULL,
+  rewardsPoints INT(4),
+  amountSpent FLOAT(10),
+  
+  CONSTRAINT MimingsAccount_PK PRIMARY KEY(customerID),
+  
+  CONSTRAINT Customer_MimingsAccount_FK
+  FOREIGN KEY(customerID) REFERENCES Customer(customerID)
+  
+  );
+  
+  CREATE TABLE CustomerAccount(
+  customerID INT(10) NOT NULL,
+  customerName VARCHAR(50),
+  customerEmail VARCHAR(60),
+  snailMail VARCHAR (100),
+  
+  CONSTRAINT CustomerAccount_PK PRIMARY KEY(customerID),
+  
+  CONSTRAINT MimingsAccount_CustomerAccount_FK
+  FOREIGN KEY(customerID) REFERENCES MimingsAccount(customerID)
+  
+  );
+  
+  CREATE TABLE CorporationAccount(
+  customerID INT(10) NOT NULL,
+  corporationName VARCHAR(50),
+  organizationName VARCHAR(50),
+  officeAddress VARCHAR(100),
+  contactNumber VARCHAR(20),
+  
+  CONSTRAINT CorporationAccount_PK PRIMARY KEY(customerID),
+  
+  CONSTRAINT MimingsAccount_CorporationAccount_FK
+  FOREIGN KEY(customerID) REFERENCES MimingsAccount(customerID)
   
   );
   
@@ -161,4 +253,11 @@ DROP TABLE LineCook;
 DROP TABLE SousChef;
 DROP TABLE HeadChef;
 DROP TABLE HeadChefRecipes;
+DROP TABLE Customer;
+DROP TABLE MimingsAccount;
+DROP TABLE CorporationAccount;
+DROP TABLE CustomerAccount;
+DROP TABLE WaitStaff
+DROP TABLE Dishwasher;
+DROP TABLE MaitreD;
 */
