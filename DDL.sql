@@ -8,3 +8,7 @@ CREATE TABLE Employee  (
 
     PRIMARY KEY(empNumber)
 );
+
+CREATE TABLE Shift (
+    shiftTime TIME PRIMARY KEY
+);
