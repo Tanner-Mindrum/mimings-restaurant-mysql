@@ -40,3 +40,23 @@ CREATE TABLE EmployeeShift (
         FOREIGN KEY(shiftTime) REFERENCES Shift(shiftTime)
 );
 
+/* Creates a table, HourlyEmployee, which is inherited from Employee.
+    It's uniquely identified by empNumber (surrogate) and has a zero-to-one
+    with Employee */
+CREATE TABLE HourlyEmployee (
+    empNumber INT(10) NOT NULL,
+    hourlyRate FLOAT(10),
+
+    CONSTRAINT HourlyEmployee_PK PRIMARY KEY(empNumber),
+    
+    CONSTRAINT Employee_HourlyEmployee_FK
+        FOREIGN KEY(empNumber) REFERENCES Employee(empNumber)
+);
+
+/*
+-- DROP TABLE STATEMENTS --
+DROP TABLE Employee;
+DROP TABLE Shift;
+DROP TABLE EmployeeShift;
+DROP TABLE HourlyEmployee;
+*/
