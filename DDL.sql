@@ -90,7 +90,7 @@ CREATE TABLE Manager(
   CONSTRAINT Manager_PK PRIMARY KEY(empNumber),
     
   CONSTRAINT SalariedEmployee_Manager_FK
-  FOREIGN KEY(empNumber) REFERENCES SalariedEmployee(empNumber)
+    FOREIGN KEY(empNumber) REFERENCES SalariedEmployee(empNumber)
 );
 
 /* Creates a table, LineCook, which is inherited from Chef.
@@ -102,8 +102,7 @@ CREATE TABLE LineCook(
   CONSTRAINT LineCook_PK PRIMARY KEY(empNumber),
     
   CONSTRAINT Chef_LineCook_FK
-  FOREIGN KEY(empNumber) REFERENCES Chef(empNumber)
-  
+    FOREIGN KEY(empNumber) REFERENCES Chef(empNumber)
   );
   
   /* Creates a table, HeadChef, which is inherited from Chef.
@@ -247,25 +246,172 @@ CREATE TABLE MimingsAccount(
   FOREIGN KEY(customerID) REFERENCES MimingsAccount(customerID)
   
   );
-  
-  /*
--- DROP TABLE STATEMENTS --
-DROP TABLE Employee;
-DROP TABLE Shift;
-DROP TABLE EmployeeShift;
-DROP TABLE HourlyEmployee;
-DROP TABLE SalariedEmployee;
-DROP TABLE Manager;
-DROP TABLE Chef;
-DROP TABLE LineCook;
-DROP TABLE SousChef;
-DROP TABLE HeadChef;
-DROP TABLE HeadChefRecipes;
-DROP TABLE Customer;
-DROP TABLE MimingsAccount;
-DROP TABLE CorporationAccount;
-DROP TABLE CustomerAccount;
-DROP TABLE WaitStaff
-DROP TABLE Dishwasher;
-DROP TABLE MaitreD;
-*/
+
+/* Creates a parent table, Station, which contains the name of a station.
+    It's uniquely identified by stationName */
+CREATE TABLE Station (
+    stationName VARCHAR(50) NOT NULL,
+
+    CONSTRAINT Station_PK PRIMARY KEY(stationName)
+);
+
+/* Creates a junction table, LineCookStation, which associates LineCook and 
+    Station and contains the name of the line cook working that station.
+    It's uniquely identified by empNumber (surrogate) and stationName and has a
+    one-to-many relationship with LineCook and Station */
+CREATE TABLE LineCookStation(
+    empNumber INT(10) NOT NULL,
+    stationName VARCHAR(50) NOT NULL,
+    lineCookName VARCHAR(50),
+
+    CONSTRAINT LineCookStation_PK PRIMARY KEY(empNumber, stationName),
+    
+    CONSTRAINT LineCook_LineCookStation_FK
+        FOREIGN KEY(empNumber) REFERENCES LineCook(empNumber),
+    CONSTRAINT Station_LineCookStation_FK
+        FOREIGN KEY(stationName) REFERENCES Station(stationName)
+);
+
+/* Creates a parent table, MenuItem, which contains information regarding
+    an item on a menu at Miming's. It's uniquely identified by menuItemName
+    and has a one-to-many relationship with Mentorship and MenuMenuItem */
+CREATE TABLE MenuItem(
+    menuItemName VARCHAR(50) NOT NULL,
+    foodType VARCHAR(50),
+    meatChoice VARCHAR(50),
+    spiceName VARCHAR(50),
+
+    CONSTRAINT MenuItem_PK PRIMARY KEY(menuItemName)
+);
+
+/* Creates a junction table, Mentorship, which associates SousChef and MenuItem
+    and contains the start and end date and skill gained of each mentorship.
+    It's uniquely identified by menuItemName, empNumber (surrogate),
+    mentorNumber (surrogate), and startDate and has a one-to-many relationship
+    with MenuItem and zero-to-many with SousChef */
+CREATE TABLE Mentorship(
+    menuItemName VARCHAR(50) NOT NULL,
+    empNumber INT(10) NOT NULL,
+    mentorNumber INT(10) NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE,
+    skill VARCHAR(50),
+
+    CONSTRAINT Mentorship_PK PRIMARY KEY(menuItemName, empNumber, mentorNumber,
+        startDate),
+    
+    CONSTRAINT MenuItem_Mentorship_FK
+        FOREIGN KEY(menuItemName) REFERENCES MenuItem(menuItemName),
+    CONSTRAINT SousChefEmployee_Mentorship_FK
+        FOREIGN KEY(empNumber) REFERENCES SousChef(empNumber),
+    CONSTRAINT SousChefMentor_Mentorship_FK
+        FOREIGN KEY(mentorNumber) REFERENCES SousChef(empNumber)
+);
+
+/* Creates a parent table, Menu, which contains information regarding
+    the name of a menu at Miming's. It's uniquely identified by menuName
+    and has a one-to-many relationship with MenuMenuItem */
+CREATE TABLE Menu(
+    menuName VARCHAR(50) NOT NULL,
+    
+    CONSTRAINT Menu_PK PRIMARY KEY(menuName)
+);
+
+/* Creates a junction table, MenuMenuItem, which associates Menu and MenuItem
+    and contains the price and size of an item on a menu at Miming's.
+    It's uniquely identified by menuItemName, and menuName and has a
+    one-to-many relationship with MenuItem and Menu */
+CREATE TABLE MenuMenuItem(
+    menuName VARCHAR(50) NOT NULL,
+    menuItemName VARCHAR(50) NOT NULL,
+    price FLOAT(10),
+    itemSize VARCHAR(50),
+
+    CONSTRAINT MenuMenuItem_PK PRIMARY KEY(menuName, menuItemName),
+
+    CONSTRAINT Menu_MenuMenuItem_FK
+        FOREIGN KEY(menuName) REFERENCES Menu(menuName),
+    CONSTRAINT MenuItem_MenuMenuItem_FK
+        FOREIGN KEY(menuItemName) REFERENCES MenuItem(menuItemName)
+);
+
+/* Creates a parent table, mmOrder, which contains information regarding
+    a customer's order at Miming's. It's uniquely identified by orderID
+    and has a one-to-many relationship with OrderDetails */
+CREATE TABLE mmOrder(
+    orderID INT(10) NOT NULL,
+    customerID INT(10),
+    orderDateTime DATETIME,
+    orderType VARCHAR(50),
+    paymentType VARCHAR(50),
+    waiverSigned BOOLEAN,
+    
+    CONSTRAINT Order_PK PRIMARY KEY(orderID),
+
+    CONSTRAINT Customer_Order_FK
+        FOREIGN KEY(customerID) REFERENCES Customer(customerID)
+);
+
+ALTER TABLE mmOrder
+ADD CONSTRAINT mmOrder_CK UNIQUE(customerID, orderDateTime);
+
+CREATE TABLE OrderDetails(
+    menuName VARCHAR(50) NOT NULL,
+    menuItemName VARCHAR(50) NOT NULL,
+    orderID INT(10) NOT NULL,
+    quantity INT(10),
+
+    CONSTRAINT OrderDetails_PK PRIMARY KEY(menuName, menuItemName, orderID),
+
+    CONSTRAINT MenuMenuItem_OrderDetails_FK_1
+        FOREIGN KEY(menuName) REFERENCES MenuMenuItem(menuName),
+    CONSTRAINT MenuMenuItem_OrderDetails_FK_2
+        FOREIGN KEY(menuItemName) REFERENCES MenuMenuItem(menuItemName),
+    CONSTRAINT mmOrder_OrderDetails_FK
+        FOREIGN KEY(orderID) REFERENCES mmOrder(orderID)
+);
+
+/* Creates a table, ToGo, which is inherited from Order. It contains information
+    regarding orders that are placed over phone or web. It's uniquely identified
+    by orderID (surrogate) and has a zero-to-one with Order */
+CREATE TABLE ToGo(
+    orderID INT(10) NOT NULL,
+    pickUpTime TIME,
+    orderReadyTime TIME,
+
+    CONSTRAINT ToGo_PK PRIMARY KEY(orderID),
+
+    CONSTRAINT mmOrder_ToGo_FK
+        FOREIGN KEY(orderID) REFERENCES mmOrder(orderID)
+);
+
+/* Creates a table, EatIn, which is inherited from Order. It's uniquely
+    identified by orderID (surrogate) and has a zero-to-one with Order */
+CREATE TABLE EatIn(
+    orderID INT(10) NOT NULL,
+    
+    CONSTRAINT EatIn_PK PRIMARY KEY(orderID),
+    
+    CONSTRAINT mmOrder_EatIn_FK
+        FOREIGN KEY(orderID) REFERENCES mmOrder(orderID)
+);
+
+/* Creates a child table, Tables, which contains information regarding
+    a table at Miming's and who is sitting at it. It's uniquely identified by
+    empNumber, orderID, and tableNumber and has a one-to-many relationship with
+    WaitStaff and a one-to-one relationship with EatIn */
+CREATE TABLE Tables(
+    empNumber INT(10) NOT NULL,
+    orderID INT(10) NOT NULL,
+    tableNumber INT(10) NOT NULL,
+    tableSection VARCHAR(50),
+    tableCapacity VARCHAR(50),
+    partySize INT(10),
+
+    CONSTRAINT Tables_PK PRIMARY KEY(empNumber, orderID, tableNumber),
+
+    CONSTRAINT WaitStaff_Tables_FK
+        FOREIGN KEY(empNumber) REFERENCES WaitStaff(empNumber),
+    CONSTRAINT EatIn_Tables_FK
+        FOREIGN KEY(orderID) REFERENCES EatIn(orderID)
+);
