@@ -352,6 +352,8 @@ CREATE TABLE mmOrder(
         FOREIGN KEY(customerID) REFERENCES Customer(customerID)
 );
 
+/* An order can also be uniquely identified by a customerID and orderDateTime,
+   so we make a candidate key using those attributes */
 ALTER TABLE mmOrder
 ADD CONSTRAINT mmOrder_CK UNIQUE(customerID, orderDateTime);
 
