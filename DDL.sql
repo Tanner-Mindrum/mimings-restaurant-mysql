@@ -423,3 +423,6 @@ DROP COLUMN employeeFunction;
 
 ALTER TABLE Employee
 DROP COLUMN payRate;
+
+ALTER TABLE Shift
+ADD COLUMN shiftName VARCHAR(100) FIRST;
