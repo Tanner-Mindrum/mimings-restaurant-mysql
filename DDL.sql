@@ -417,3 +417,9 @@ CREATE TABLE Tables(
     CONSTRAINT EatIn_Tables_FK
         FOREIGN KEY(orderID) REFERENCES EatIn(orderID)
 );
+
+ALTER TABLE Employee
+DROP COLUMN employeeFunction;
+
+ALTER TABLE Employee
+DROP COLUMN payRate;
