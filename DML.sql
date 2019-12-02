@@ -37,19 +37,19 @@ INSERT INTO Employee
            ('16:00:00');
                 
 INSERT INTO EmployeeShift
-    VALUES (1, '9:00:00', 'Morning Shift'),
-           (2, '9:00:00', 'Morning Shift'),
-           (3, '9:00:00', 'Morning Shift'),
-           (7, '9:00:00', 'Morning Shift'),
-           (9, '9:00:00', 'Morning Shift'),
-           (11, '9:00:00', 'Morning Shift'),
-           (12, '16:00:00', 'Evening Shift'),
-           (4, '16:00:00', 'Evening Shift'),
-           (5, '16:00:00', 'Evening Shift'),
-           (6, '16:00:00', 'Evening Shift'),
-           (8, '16:00:00', 'Evening Shift'),
-           (10, '16:00:00', 'Evening Shift'),
-           (13, '16:00:00', 'Evening Shift');
+    VALUES (1, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (2, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (3, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (7, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (9, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (11, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (12, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (4, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (5, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (6, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (8, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (10, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (13, '16:00:00', 'Evening Shift', '2019-11-01');
 
 INSERT INTO SalariedEmployee
     VALUES (1, TRUE, 5000.00),
@@ -196,3 +196,11 @@ INSERT INTO MenuMenuItem (menuName, menuItemName, price, itemSize)
 	('Childrens', 'Pork', 6.50, 'small'),
 	('Childrens', 'Chicken', 5.50, 'small'),
     ('Sunday brunch buffet', 'Buffet', 39.99, NULL);
+    
+INSERT INTO Tables
+    VALUES (7, 7, 1, 'Front room', 10),
+           (7, 8, 2, 'Front room', 10),
+           (7, 9, 3, 'Bar', 10),
+           (7, 10, 4, 'Bar', 10),
+           (8, 11, 5, 'Patio', 10),
+           (8, 12, 6, 'Patio', 10);
