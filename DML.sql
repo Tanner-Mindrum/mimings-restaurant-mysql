@@ -148,3 +148,21 @@ INSERT INTO mmOrder (orderID, customerID, orderDateTime, paymentType, waiverSign
 	(010, 2000000002, '2018-09-01 22:56:10', 'Credit Card', 0),
 	(011, 2000000006, '2019-03-09 12:34:10', 'Credit Card', 1),
 	(012, 2000000005, '2019-04-06 09:45:10', 'Credit Card', 0);
+    
+INSERT INTO ToGo (orderID, pickUpTime, orderReadyTime) 
+	VALUES
+	(001,'09:37:10', '09:35:10'),
+	(002,'13:32:10', '13:25:10'),
+	(003,'08:25:10','08:18:10'),
+	(004,'09:35:10','09:30:10'),
+	(005,'20:50:10','20:45:10'),
+	(006,'11:05:10','11:00:10');
+
+INSERT INTO EatIn (orderID) 
+	VALUES
+	(007),
+	(008),
+	(009),
+	(010),
+	(011),
+	(012);
