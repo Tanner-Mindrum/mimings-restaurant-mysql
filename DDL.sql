@@ -26,19 +26,20 @@ CREATE TABLE Shift (
     and contains the date of the shift. It's uniquely identified by
     empNumber (surrogate) and shiftTime and has a one-to-many relationship with
     Employee and Shift */
-CREATE TABLE EmployeeShift (
-    empNumber INT(10) NOT NULL,
-    shiftTime TIME NOT NULL,
-    empShiftDate DATE,
-    
-    CONSTRAINT EmployeeShift_PK PRIMARY KEY(empNumber, shiftTime),
-
-    CONSTRAINT Employee_EmployeeShift_FK
-        FOREIGN KEY(empNumber) REFERENCES Employee(empNumber),
-
-    CONSTRAINT Shift_EmployeeShift_FK
-        FOREIGN KEY(shiftTime) REFERENCES Shift(shiftTime)
-);
+INSERT INTO EmployeeShift
+    VALUES (1, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (2, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (3, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (7, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (9, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (11, '9:00:00', 'Morning Shift', '2019-11-01'),
+           (12, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (4, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (5, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (6, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (8, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (10, '16:00:00', 'Evening Shift', '2019-11-01'),
+           (13, '16:00:00', 'Evening Shift', '2019-11-01');
 
 /* Creates a table, HourlyEmployee, which is inherited from Employee.
     It's uniquely identified by empNumber (surrogate) and has a zero-to-one
