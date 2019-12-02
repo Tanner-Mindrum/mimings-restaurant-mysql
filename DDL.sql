@@ -424,5 +424,8 @@ DROP COLUMN employeeFunction;
 ALTER TABLE Employee
 DROP COLUMN payRate;
 
-ALTER TABLE Shift
-ADD COLUMN shiftName VARCHAR(100) FIRST;
+ALTER TABLE EmployeeShift
+ADD COLUMN shiftName VARCHAR(100);
+
+ALTER TABLE EmployeeShift
+DROP COLUMN empShiftDate;
