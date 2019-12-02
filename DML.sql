@@ -168,8 +168,29 @@ INSERT INTO EatIn (orderID)
 	(012);
     
 INSERT INTO Menu (menuName) 
-VALUES
+	VALUES
 	('Evening'),
 	('Lunch'),
 	('Sunday brunch buffet'),
 	('Childrens');
+
+INSERT INTO MenuMenuItem (menuName, menuItemName, price, itemSize) 
+	VALUES
+	('Evening', 'Chef Special', 14.50, 'large'),
+	('Evening', 'Celery Sticks', 12.25, 'large'),
+	('Evening', 'Shabu Shabu Udon', 13.99, 'large'),
+	('Evening', 'Pork', 15.50, 'large'),
+	('Evening', 'Chicken', 14.50, 'large'),
+	('Evening', 'Chow Mein', 13.50, 'large'),
+	('Evening', 'Egg Foo Young', 13.99, 'large'),
+	('Evening', 'Chop Suey', 14.99, 'large'),
+	('Lunch', 'Chef Special', 10.20, 'medium'),
+	('Lunch', 'Celery Sticks', 9.50, 'medium'),
+	('Lunch', 'Shabu Shabu Udon', 8.99, 'medium'),
+	('Lunch', 'Pork', 9.50, 'medium'),
+	('Lunch', 'Chicken', 10.50, 'medium'),
+	('Lunch', 'Chow Mein', 10.50, 'medium'),
+	('Childrens', 'Celery Sticks', 5.50, 'small'),
+	('Childrens', 'Shabu Shabu Udon', 4.99, 'small'),
+	('Childrens', 'Pork', 6.50, 'small'),
+	('Childrens', 'Chicken', 5.50, 'small');
