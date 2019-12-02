@@ -23,7 +23,28 @@ INSERT INTO Employee
            (10, 'Dishwasher', 'Wash dishes and glasswear, assist kitchen in prep
                 duties', 'Part time', 'Javier Monway'),
            (11, 'Maitre D', 'Manage restaurant seating, lead guests to tables',
-                'Part time', 'Cristoph Freeze');
+                'Part time', 'Cristoph Freeze'),
             (12, 'Head Chef', 'Control and direct food preparation, provide
             expertise in Chinese cuisine, and create recipes', 'Full time',
-            'Monica Salzy');
+            'Monica Salzy'),
+            (13, 'Maitre D', 'Manage restaurant seating, lead guests to tables',
+                'Part time', 'Ana Kaween');
+  
+  INSERT INTO Shift
+    VALUES ('9:00:00'),
+           ('16:00:00');
+                
+INSERT INTO EmployeeShift
+    VALUES (1, '9:00:00', 'Morning Shift'),
+           (2, '9:00:00', 'Morning Shift'),
+           (3, '9:00:00', 'Morning Shift'),
+           (7, '9:00:00', 'Morning Shift'),
+           (9, '9:00:00', 'Morning Shift'),
+           (11, '9:00:00', 'Morning Shift'),
+           (12, '16:00:00', 'Evening Shift'),
+           (4, '16:00:00', 'Evening Shift'),
+           (5, '16:00:00', 'Evening Shift'),
+           (6, '16:00:00', 'Evening Shift'),
+           (8, '16:00:00', 'Evening Shift'),
+           (10, '16:00:00', 'Evening Shift'),
+           (13, '16:00:00', 'Evening Shift');
