@@ -89,3 +89,13 @@ INSERT INTO HeadChefRecipes
     VALUES (1, 'Special Chow Mein', 'Seasoned noodles with vegetables'),
            (12, 'Egg Foo Young', 'Omelette'),
            (12, 'Chop Suey', 'Meat, egg, and vegetable dish');
+           
+INSERT INTO MenuItem
+    VALUES ('Celery Sticks', 'Appetizer', NULL, 'Mild'),
+           ('Shabu Shabu Udon', 'Soup', 'Beef', 'Mild'),
+           ('Chef Special', 'Meat Entree', 'Chef Special', 'Mild'),
+           ('Pork', 'Meat Entree', 'Pork', 'Tangy'),
+           ('Chicken', 'Meat Entree', 'Chicken', 'Piquant'),
+           ('Chow Mein', 'Chow Mein', 'Beef', 'Hot'),
+           ('Egg Foo Young', 'Egg Foo Young', 'Chicken', 'Oh My God'),
+           ('Chop Suey', 'Chop Suey', 'Seafood', 'Oh My God');
