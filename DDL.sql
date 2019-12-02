@@ -432,3 +432,4 @@ DROP COLUMN empShiftDate;
 
 ALTER TABLE HourlyEmployee MODIFY hourlyRate DECIMAL(5,2);
 
+ALTER TABLE SalariedEmployee MODIFY weeklyRate DECIMAL(10, 2);
