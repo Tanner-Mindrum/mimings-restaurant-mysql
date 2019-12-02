@@ -429,3 +429,6 @@ ADD COLUMN shiftName VARCHAR(100);
 
 ALTER TABLE EmployeeShift
 DROP COLUMN empShiftDate;
+
+ALTER TABLE HourlyEmployee MODIFY hourlyRate DECIMAL(5,2);
+
