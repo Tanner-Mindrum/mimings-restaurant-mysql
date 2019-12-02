@@ -99,3 +99,37 @@ INSERT INTO MenuItem
            ('Chow Mein', 'Chow Mein', 'Beef', 'Hot'),
            ('Egg Foo Young', 'Egg Foo Young', 'Chicken', 'Oh My God'),
            ('Chop Suey', 'Chop Suey', 'Seafood', 'Oh My God');
+           
+INSERT INTO Customer(customerID, customerName, email, age) 
+	Values
+	(2000000001, 'Joe', 'Joe223@gmail.com', 21),
+	(2000000002, 'Shrek', 'Shrek221@gmail.com', 43),
+	(2000000003, 'Perry the Plataups', 'perry42@secretAgent.com', 14),
+	(2000000004, 'Einstein', 'Genius@email.com', 150),
+	(2000000005, 'Steven', 'Steve32@gmail.com', 20),
+	(2000000006, 'Justin', 'Justin75@gmail.com', 21),
+	(2000000007, 'Oscar', 'Oscar11@gmail.com', 20);
+
+INSERT INTO MimingsAccount (customerID, rewardsPoints, amountSpent) 
+	VALUES
+	(2000000001, 75, 750.23),
+	(2000000002, 325, 3250.13),
+	(2000000003, 476, 4764.20),
+	(2000000004, 97, 975.28),
+	(2000000005, 12, 128.99),
+	(2000000006, 33, 332.08),
+	(2000000007, 12, 120.72);
+
+INSERT INTO CorporationAccount ( customerID, corporationName, organizationName, officeAddress, contactNumber )
+	VALUES
+	(2000000001, 'Swamp INC.', 'CEOs', '700 SWAMP Ave.', '1-800-OGRE'),
+	(2000000002, 'Doofenshmertz Evil INC.', 'Secret Agents', '590 TRI STATE AREA', '1-800-DOOF'),
+	(2000000003, 'Joes corporation', 'Engineering', '1111 Long Beach Ave.', '1111111'),
+	(2000000004, 'Steves corporation', 'Software Developers', '1110 Long Beach Ave.', '2222222');
+
+INSERT INTO CustomerAccount (customerID, snailMail)
+ VALUES
+	(2000000005, 'Stevesmail@snailmail.com'),
+	(2000000006, 'justins@snailmail.com'),
+	(2000000007, 'Oscars@snailmail.com'),
+	(2000000001, 'joe@snailmail.com');
