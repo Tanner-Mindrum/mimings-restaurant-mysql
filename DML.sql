@@ -24,3 +24,6 @@ INSERT INTO Employee
                 duties', 'Part time', 'Javier Monway'),
            (11, 'Maitre D', 'Manage restaurant seating, lead guests to tables',
                 'Part time', 'Cristoph Freeze');
+            (12, 'Head Chef', 'Control and direct food preparation, provide
+            expertise in Chinese cuisine, and create recipes', 'Full time',
+            'Monica Salzy');
