@@ -30,6 +30,8 @@ INSERT INTO Employee
             (13, 'Maitre D', 'Manage restaurant seating, lead guests to tables',
                 'Part time', 'Ana Kaween');
   
+-- Miming's open 9:00 AM - 11:00 PM
+-- Breakfast from 9:00 - 12:00, lunch from 12:00 - 4:00, dinner from 4:00 - 11:00
   INSERT INTO Shift
     VALUES ('9:00:00'),
            ('16:00:00');
