@@ -133,3 +133,18 @@ INSERT INTO CustomerAccount (customerID, snailMail)
 	(2000000006, 'justins@snailmail.com'),
 	(2000000007, 'Oscars@snailmail.com'),
 	(2000000001, 'joe@snailmail.com');
+
+INSERT INTO mmOrder (orderID, customerID, orderDateTime, paymentType, waiverSigned) 
+	VALUES
+	(001, 2000000005, '2013-07-11 09:25:10','Credit Card',0),
+	(002, 2000000005, '2013-07-13 13:20:10','CreditCard',0),
+	(003, 2000000001, '2014-07-13 08:13:10','Check',0),
+	(004, null, '2014-07-13 09:25:10', 'Cash', 1),
+	(005, 2000000002, '2015-08-12 20:39:10', 'Credit Card', 0),
+	(006, 2000000003, '2015-10-30 10:55:10', 'Credit Card', 1),
+	(007, 2000000004, '2016-12-02 03:12:10', 'Credit Card', 0),
+	(008, 2000000006, '2017-01-21 09:25:10', 'Credit Card', 0),
+	(009, 2000000007, '2017-05-13 14:43:10', 'Credit Card', 0),
+	(010, 2000000002, '2018-09-01 22:56:10', 'Credit Card', 0),
+	(011, 2000000006, '2019-03-09 12:34:10', 'Credit Card', 1),
+	(012, 2000000005, '2019-04-06 09:45:10', 'Credit Card', 0);
