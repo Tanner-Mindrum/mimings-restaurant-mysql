@@ -98,7 +98,8 @@ INSERT INTO MenuItem
            ('Chicken', 'Meat Entree', 'Chicken', 'Piquant'),
            ('Chow Mein', 'Chow Mein', 'Beef', 'Hot'),
            ('Egg Foo Young', 'Egg Foo Young', 'Chicken', 'Oh My God'),
-           ('Chop Suey', 'Chop Suey', 'Seafood', 'Oh My God');
+           ('Chop Suey', 'Chop Suey', 'Seafood', 'Oh My God'),
+           ('Buffet', 'All', NULL, NULL);
            
 INSERT INTO Customer(customerID, customerName, email, age) 
 	Values
@@ -193,4 +194,5 @@ INSERT INTO MenuMenuItem (menuName, menuItemName, price, itemSize)
 	('Childrens', 'Celery Sticks', 5.50, 'small'),
 	('Childrens', 'Shabu Shabu Udon', 4.99, 'small'),
 	('Childrens', 'Pork', 6.50, 'small'),
-	('Childrens', 'Chicken', 5.50, 'small');
+	('Childrens', 'Chicken', 5.50, 'small'),
+    ('Sunday brunch buffet', 'Buffet', 39.99, NULL);
