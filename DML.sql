@@ -50,3 +50,42 @@ INSERT INTO EmployeeShift
            (8, '16:00:00', 'Evening Shift'),
            (10, '16:00:00', 'Evening Shift'),
            (13, '16:00:00', 'Evening Shift');
+
+INSERT INTO SalariedEmployee
+    VALUES (1, TRUE, 5000.00),
+           (2, TRUE, 2000.00),
+           (3, TRUE, 3000.00),
+           (4, TRUE, 2000.00),
+           (5, TRUE, 3000.00),
+           (6, TRUE, 3000.00),
+           (12, TRUE, 5000.00);
+
+INSERT INTO Chef
+    VALUES (1),
+           (2),
+           (3),
+           (4),
+           (5),
+           (6),
+           (12);
+
+INSERT INTO LineCook
+    VALUES (4), (2);
+
+INSERT INTO HeadChef
+    VALUES (1), (12);
+
+INSERT INTO SousChef
+    VALUES (3), (6), (5);
+
+INSERT INTO Station
+    VALUES ('Butcher');
+
+INSERT INTO LineCookStation
+    VALUES (2, 'Fryer', 'Linus Kook'),
+           (4, 'Butcher', 'Won der');
+
+INSERT INTO HeadChefRecipes
+    VALUES (1, 'Special Chow Mein', 'Seasoned noodles with vegetables'),
+           (12, 'Egg Foo Young', 'Omelette'),
+           (12, 'Chop Suey', 'Meat, egg, and vegetable dish');
