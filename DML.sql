@@ -203,7 +203,8 @@ INSERT INTO Tables
            (7, 9, 3, 'Bar', 10),
            (7, 10, 4, 'Bar', 10),
            (8, 11, 5, 'Patio', 10),
-           (8, 12, 6, 'Patio', 10);
+           (8, 12, 6, 'Patio', 10),
+           (7,13,4,'Bar', 10);
            
 INSERT INTO OrderDetails 
 	VALUES
