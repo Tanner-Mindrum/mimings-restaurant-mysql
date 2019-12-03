@@ -204,3 +204,22 @@ INSERT INTO Tables
            (7, 10, 4, 'Bar', 10),
            (8, 11, 5, 'Patio', 10),
            (8, 12, 6, 'Patio', 10);
+           
+INSERT INTO OrderDetails 
+	VALUES
+	('Lunch', 'Chow Mein', 001, 2),
+	('Childrens', 'Pork', 001, 1),
+	('Lunch', 'Chicken', 002, 3),
+	('Sunday brunch buffet', 'Buffet', 003, 4),
+	('Lunch', 'Chop Suey', 004, 1),
+	('Evening', 'Chef Special', 005, 2),
+	('Lunch', 'Pork', 006, 5),
+	('Lunch', 'Shabu Shabu Udon', 007, 4),
+	('Lunch', 'Chef Special', 008, 3),
+	('Lunch', 'Chef Special', 009, 2),
+	('Childrens', 'Pork', 009, 1),
+	('Evening', 'Celery Sticks', 010, 2),
+	('Lunch', 'Chop Suey', 011, 2),
+	('Lunch', 'Chow Mein', 012, 1);
+    
+
