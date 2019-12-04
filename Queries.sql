@@ -24,6 +24,12 @@ ORDER BY rewardsPoints DESC;
 SELECT customerName, amountSpent FROM MimingsAccount NATURAL JOIN Customer
 ORDER BY amountSpent DESC;
 
+-- Query L DRAFT - literal statement works
+SELECT empName, menuItemName FROM Employee
+INNER JOIN Mentorship ON Employee.empNumber = Mentorship.mentorNumber
+WHERE Mentorship.mentorNumber = 6;
+IN (SELECT MAX(COUNT(mentorNumber) FROM Mentorship GROUP BY mentorNumber ORDER BY mentorNumber DESC LIMIT 1);
+
 -- Query N
 SELECT customerName, organizationName FROM CustomerAccount
 INNER JOIN CorporationAccount on CustomerAccount.customerID = CorporationAccount.customerID
