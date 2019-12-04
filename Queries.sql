@@ -1,3 +1,21 @@
+-- Query F
+SELECT menuItemName AS "Item Name", 
+       shiftName AS "Shift",
+       orderDateTime AS "Time Ordered",
+       empName AS "Employee Name", 
+       skill AS "Skill"
+FROM mmOrder
+NATURAL JOIN OrderDetails
+NATURAL JOIN MenuMenuItem
+NATURAL JOIN MenuItem
+NATURAL JOIN Mentorship
+NATURAL JOIN SousChef
+NATURAL JOIN Chef
+NATURAL JOIN SalariedEmployee
+NATURAL JOIN Employee
+NATURAL JOIN EmployeeShift
+WHERE skill <> "Expert";
+
 -- Query G
 SELECT customerName, rewardsPoints FROM Customer NATURAL JOIN MimingsAccount
 ORDER BY rewardsPoints DESC;
