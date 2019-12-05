@@ -13,11 +13,11 @@ WHERE CustomerID IN
 ORDER BY CustomerID;
 
 -- Customer Addresses views FINISHED (View b)
-SELECT customerID, customerName, 'Both' AS "Account Type", email, age, snailMail, corporationName, organizationName, officeAddress, contactNumber 
+SELECT customerID, customerName, 'Both' AS "Account Type", email, age, snailMail, corporationName, organizationName, officeAddress, contactNumber, rewardsPoints, AmountSpent
 FROM Customer Natural Join CustomerAccount Natural Join CorporationAccount Natural Join MimingsAccount
 UNION
-SELECT customerID, customerName, 'Corporation' AS "Account Type", email, age, 'None' AS "snailMail", corporationName, organizationName, officeAddress, contactNumber 
-FROM Customer Natural Join CorporationAccount
+SELECT customerID, customerName, 'Corporation' AS "Account Type", email, age, 'None' AS "snailMail", corporationName, organizationName, officeAddress, contactNumber, rewardsPoints, AmountSpent 
+FROM Customer Natural Join CorporationAccount Natural Join MimingsAccount
 WHERE CustomerID IN 
     (SELECT CustomerID 
     FROM CorporationAccount) 
@@ -25,8 +25,8 @@ WHERE CustomerID IN
     (SELECT CustomerID
     FROM CustomerAccount)
 UNION
-SELECT customerID, customerName, 'Customer' AS "Account Type", email, age, snailMail,'None' AS "corporationName", 'None' AS "organizationName", 'None' AS "officeAddress", 'None' AS contactNumber
-FROM Customer Natural Join CustomerAccount
+SELECT customerID, customerName, 'Customer' AS "Account Type", email, age, snailMail,'None' AS "corporationName", 'None' AS "organizationName", 'None' AS "officeAddress", 'None' AS contactNumber, rewardsPoints, AmountSpent
+FROM Customer Natural Join CustomerAccount Natural Join MimingsAccount
 WHERE CustomerID IN 
     (SELECT CustomerID 
     FROM CustomerAccount)

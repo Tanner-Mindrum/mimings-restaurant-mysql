@@ -1,3 +1,26 @@
+-- Query A
+SELECT customerName, 'Both Corporation and Customer' AS "Account Type",email, snailMail, contactNumber 
+FROM Customer Natural Join CustomerAccount Natural Join CorporationAccount Natural Join MimingsAccount
+UNION
+SELECT customerName, 'Corporation' AS "Account Type", email, 'None' AS "snailMail", contactNumber 
+FROM Customer Natural Join CorporationAccount Natural Join MimingsAccount
+WHERE CustomerID IN 
+    (SELECT CustomerID 
+    FROM CorporationAccount) 
+    AND CustomerID NOT IN 
+    (SELECT CustomerID
+    FROM CustomerAccount)
+UNION
+SELECT customerName, 'Customer' AS "Account Type", email, snailMail, 'None' AS contactNumber
+FROM Customer Natural Join CustomerAccount Natural Join MimingsAccount
+WHERE CustomerID IN 
+    (SELECT CustomerID 
+    FROM CustomerAccount)
+    AND CustomerID NOT IN 
+    (SELECT CustomerID 
+    FROM CorporationAccount) 
+ORDER BY CustomerName;
+
 -- Query F
 SELECT menuItemName AS "Item Name", 
        shiftName AS "Shift",
