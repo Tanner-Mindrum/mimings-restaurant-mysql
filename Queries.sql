@@ -21,6 +21,16 @@ WHERE CustomerID IN
     FROM CorporationAccount) 
 ORDER BY CustomerName;
 
+-- Query B
+SELECT customerName, amountSpent 
+FROM MimingsAccount NATURAL JOIN Customer
+WHERE customerID IN
+    (SELECT customerID
+    FROM mmOrder
+    WHERE OrderDateTime <= (SELECT CURRENT_TIMESTAMP()) AND OrderDateTime > (SELECT SUBDATE(CURRENT_TIMESTAMP(), INTERVAL 2 YEAR)))
+ORDER BY amountSpent DESC
+LIMIT 3;
+
 -- Query F
 SELECT menuItemName AS "Item Name", 
        shiftName AS "Shift",
