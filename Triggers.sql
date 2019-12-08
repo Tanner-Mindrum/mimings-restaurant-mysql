@@ -35,3 +35,69 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Business rule 2 **** Requires DDL update
+DROP TRIGGER IF EXISTS MAX_reward_check;
+DELIMITER //
+CREATE TRIGGER MAX_reward_check
+BEFORE INSERT ON mmDetails
+FOR EACH ROW
+BEGIN
+        IF (NEW.rewardsUsed > 20)
+        THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'You mmay not use more than $20 in Mimings rewards points per purchase.';
+    END IF;
+END //
+DELIMITER ;
+
+-- Business rule 3 **** Requires DDL update
+DROP TRIGGER IF EXISTS waiver_check;
+DELIMITER //
+CREATE TRIGGER waiver_check
+BEFORE INSERT ON OrderDetails
+FOR EACH ROW
+BEGIN
+        IF (SELECT COUNT(*) FROM Customer
+        INNER JOIN mmOrder ON Customer.customerID = mmOrder.customerID
+        INNER JOIN OrderDetails ON mmOrder.orderID = OrderDetails.orderID
+        WHERE OrderDetails.orderID = NEW.orderID AND mmOrder.waiverSigned = false
+        AND NEW.spiciness = 'Oh My God' > 0)
+        THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'You must first sign a waiver to order the Oh My God spiciness level.';
+    END IF;
+END //
+DELIMITER ;
+
+-- Business rule 4
+DROP TRIGGER IF EXISTS quick_pickup_check;
+DELIMITER //
+CREATE TRIGGER quick_pickup_check
+BEFORE INSERT ON ToGo
+FOR EACH ROW
+BEGIN
+        IF (NEW.pickUpTime - NEW.orderReadyTime > TIME('00:15:00'))
+        THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Oredrs must be picked up within 15 minutes of completion.';
+    END IF;
+END //
+DELIMITER ;
+                                                       
+-- Business rule 5
+DROP TRIGGER IF EXISTS no_double_shift;
+DELIMITER //
+CREATE TRIGGER no_double_shift
+BEFORE INSERT ON EmployeeShift
+FOR EACH ROW
+BEGIN
+        IF (SELECT COUNT(*) FROM EmployeeShift WHERE
+        NEW.empNumber = EmployeeShift.empNumber AND
+        NEW.empShiftDate = EmployeeShift.empShiftDate > 0)
+        THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'An employee may not work two full shifts in a given day.';
+    END IF;
+END //
+DELIMITER ;
+                                                    
