@@ -112,11 +112,17 @@ GROUP BY menuItemName
 ORDER BY Total DESC
 LIMIT 5;                                 
               
--- Query L DRAFT - literal statement works
+-- Query L
+CREATE VIEW max_mentor_v AS
+SELECT mentorNumber, COUNT(mentorNumber) c FROM Mentorship
+GROUP BY mentorNumber
+ORDER BY c DESC
+LIMIT 1;
+
 SELECT empName, menuItemName FROM Employee
 INNER JOIN Mentorship ON Employee.empNumber = Mentorship.mentorNumber
-WHERE Mentorship.mentorNumber = 6;
-IN (SELECT MAX(COUNT(mentorNumber) FROM Mentorship GROUP BY mentorNumber ORDER BY mentorNumber DESC LIMIT 1);
+WHERE Mentorship.mentorNumber IN
+(SELECT mentorNumber FROM max_mentor_v);
 
 -- Query N
 SELECT customerName, organizationName FROM CustomerAccount
