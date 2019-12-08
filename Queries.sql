@@ -30,6 +30,12 @@ WHERE customerID IN
     WHERE OrderDateTime <= (SELECT CURRENT_TIMESTAMP()) AND OrderDateTime > (SELECT SUBDATE(CURRENT_TIMESTAMP(), INTERVAL 2 YEAR)))
 ORDER BY amountSpent DESC
 LIMIT 3;
+                                                                                            
+-- Query C
+SELECT empNumber, empName, COUNT(*) AS "Items Learned", GROUP_CONCAT(menuItemName)
+FROM Mentorship NATURAL JOIN Employee
+GROUP BY empNumber 
+HAVING COUNT(*) >= 3;                                                                                            
 
 -- Query F
 SELECT menuItemName AS "Item Name", 
