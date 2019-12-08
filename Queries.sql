@@ -84,6 +84,15 @@ ORDER BY rewardsPoints DESC;
 SELECT customerName, amountSpent FROM MimingsAccount NATURAL JOIN Customer
 ORDER BY amountSpent DESC;
 
+-- Query I              
+CREATE VIEW cust_month_v AS
+SELECT customerID, customerName, month(orderDateTime) m
+FROM mmOrder NATURAL JOIN EatIn NATURAL JOIN Customer;
+
+SELECT customerName FROM cust_month_v
+GROUP BY m
+ORDER BY COUNT(*) DESC;
+
 -- Query L DRAFT - literal statement works
 SELECT empName, menuItemName FROM Employee
 INNER JOIN Mentorship ON Employee.empNumber = Mentorship.mentorNumber
