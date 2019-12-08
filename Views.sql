@@ -1,17 +1,4 @@
 -- MenuItem_v
--- Customer_addresses_v Prototype 
-SELECT customerID, customerName, 'Corporation' AS "Account Type", email, age, 'None' AS "snailMail", corporationName, organizationName, officeAddress, contactNumber 
-FROM Customer Natural Join CorporationAccount
-WHERE CustomerID IN 
-    (SELECT CustomerID 
-    FROM CorporationAccount)
-UNION
-SELECT customerID, customerName, 'Customer' AS "Account Type", email, age, snailMail,'None' AS "corporationName", 'None' AS "organizationName", 'None' AS "officeAddress", 'None' AS contactNumber
-FROM Customer Natural Join CustomerAccount
-WHERE CustomerID IN 
-    (SELECT CustomerID 
-    FROM CustomerAccount)
-ORDER BY CustomerID;
 
 -- Customer_addresses_v
 CREATE VIEW Customer_addresses_v AS
@@ -46,19 +33,3 @@ ORDER BY E.empName, M.empName;
 
 -- Customer_Sales_v
 -- Customer_Value_v
-
-
-
--- SELECT A VIEW
--- SELECT * FROM Customer_addresses_v;
--- SELECT * FROM Sous_mentor_v;
-
--- DROP A VIEW 
--- DROP VIEW Customer_addresses_v;
--- DROP VIEW Sous_mentor_v;
-
-
-
-
-
-
