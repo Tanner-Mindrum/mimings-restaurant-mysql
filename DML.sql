@@ -236,3 +236,5 @@ INSERT INTO mmOrder
 
 INSERT INTO OrderDetails
     VALUES ('Lunch', 'Pork', 14, 1);
+
+INSERT INTO EatIn VALUES (14, 1);
