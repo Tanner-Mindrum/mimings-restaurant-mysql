@@ -16,3 +16,22 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Business rule 1
+DROP TRIGGER IF EXISTS menu_age_check;
+DELIMITER //
+CREATE TRIGGER menu_age_check
+BEFORE INSERT ON OrderDetails
+FOR EACH ROW
+BEGIN
+        IF (SELECT COUNT(*) FROM Customer
+        INNER JOIN mmOrder ON Customer.customerID = mmOrder.customerID
+        INNER JOIN OrderDetails ON mmOrder.orderID = OrderDetails.orderID
+        WHERE OrderDetails.orderID = NEW.orderID AND Customer.age > 12 AND
+        NEW.menuName = 'Childrens' > 0)
+        THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'You must be 12 years old or younger to order from the childrens menu.';
+    END IF;
+END //
+DELIMITER ;
+
