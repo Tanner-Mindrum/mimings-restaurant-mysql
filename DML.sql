@@ -224,3 +224,9 @@ INSERT INTO OrderDetails
 	('Lunch', 'Chow Mein', 012, 1);
     
 
+INSERT INTO OrderDetails
+    VALUES ('Childrens', 'Pork', 13, 1), ('Childrens', 'Celery Sticks', 9, 5),
+            ('Childrens', 'Celery Sticks', 1, 5), ('Childrens', 'Shabu Shabu Udon', 9, 1);
+	    
+INSERT INTO Mentorship
+    VALUES ('Celery sticks', 6, 5, '2019-12-01', '2019-12-07', 'Expert');	    
