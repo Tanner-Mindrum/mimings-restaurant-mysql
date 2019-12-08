@@ -22,12 +22,10 @@ WHERE CustomerID IN
 ORDER BY CustomerName;
 
 -- Query B
-SELECT customerName, amountSpent 
-FROM MimingsAccount NATURAL JOIN Customer
-WHERE customerID IN
-    (SELECT customerID
-    FROM mmOrder
-    WHERE OrderDateTime <= (SELECT CURRENT_TIMESTAMP()) AND OrderDateTime > (SELECT SUBDATE(CURRENT_TIMESTAMP(), INTERVAL 2 YEAR)))
+SELECT customerName, ROUND(SUM(MenuMenuItem.price * Quantity),2) AS "Net Spending in past 2 years", mmOrder.orderDateTime
+FROM MimingsAccount NATURAL JOIN Customer NATURAL JOIN mmOrder NATURAL JOIN OrderDetails NATURAL JOIN MenuMenuItem
+WHERE OrderDateTime <= (SELECT CURRENT_TIMESTAMP()) AND OrderDateTime > (SELECT SUBDATE(CURRENT_TIMESTAMP(), INTERVAL 2 YEAR))
+GROUP BY customerName
 ORDER BY amountSpent DESC
 LIMIT 3;
                                                                                             
