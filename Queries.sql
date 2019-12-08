@@ -93,6 +93,16 @@ SELECT customerName FROM cust_month_v
 GROUP BY m
 ORDER BY COUNT(*) DESC;
 
+-- Query J              
+SELECT customerName, SUM(price) AS "Total" FROM mmOrder
+NATURAL JOIN OrderDetails
+NATURAL JOIN MenuMenuItem
+NATURAL JOIN Customer
+WHERE YEAR(orderDateTime) = YEAR(NOW())
+GROUP BY customerID
+ORDER BY Total DESC
+LIMIT 3; 
+              
 -- Query L DRAFT - literal statement works
 SELECT empName, menuItemName FROM Employee
 INNER JOIN Mentorship ON Employee.empNumber = Mentorship.mentorNumber
