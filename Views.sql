@@ -89,8 +89,8 @@ FROM mmOrder
 NATURAL JOIN OrderDetails
 NATURAL JOIN MenuMenuItem
 NATURAL JOIN Customer
-GROUP BY year(orderDateTime)
-ORDER BY customerName;                                                                                                             
+GROUP BY year(orderDateTime), customerName
+ORDER BY Year Desc;                                                                                                          
 
 -- Customer_Value_v
 CREATE VIEW Customer_Value_v AS
