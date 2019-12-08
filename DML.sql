@@ -238,3 +238,13 @@ INSERT INTO OrderDetails
     VALUES ('Lunch', 'Pork', 14, 1);
 
 INSERT INTO EatIn VALUES (14, 1);
+
+
+INSERT INTO Mentorship
+    VALUES ('Shabu Shabu Udon', 3, 6, '2019-01-01', '2019-01-30', 'Proficient'),
+           ('Pork', 3, 6, '2019-02-02', '2019-03-30', 'Proficient'),
+           ('Pork', 5, 6, '2019-03-03', '2019-03-30', 'Proficient'),
+           ('Chicken', 3, 5, '2019-04-04', '2019-04-30', 'Proficient'),
+           ('Chef Special', 5, 3, '2019-05-05', '2019-05-30', 'Proficient'),
+           ('Buffet', 3, 6, '2019-06-06', '2019-07-30', 'Expert'),
+           ('Buffet', 6, 3, '2019-08-08', '2019-09-30', 'Expert');
