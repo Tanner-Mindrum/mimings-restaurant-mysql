@@ -225,6 +225,7 @@ CREATE TABLE `mmOrder` (
   `customerID` int(10) DEFAULT NULL,
   `orderDateTime` datetime DEFAULT NULL,
   `paymentType` varchar(50) DEFAULT NULL,
+  `rewardsPointsUsed` int(5) DEFAULT NULL,
   `waiverSigned` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`orderID`),
   UNIQUE KEY `mmOrder_CK` (`customerID`,`orderDateTime`),
