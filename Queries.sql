@@ -49,7 +49,14 @@ WHERE empNumber IN
 (SELECT DISTINCT e1.empNumber FROM sous_items_v e1
 WHERE EXISTS (SELECT empNumber FROM sous_items_v e2
               WHERE e1.Items = e2.Items
-              GROUP BY Items HAVING COUNT(empNumber) > 1));                                                                                            
+              GROUP BY Items HAVING COUNT(empNumber) > 1));
+              
+-- Query E
+SELECT menuItemName FROM OrderDetails
+WHERE menuName = 'Childrens'
+GROUP BY menuItemName
+ORDER BY COUNT(*) DESC
+LIMIT 3;
 
 -- Query F
 SELECT menuItemName AS "Item Name", 
