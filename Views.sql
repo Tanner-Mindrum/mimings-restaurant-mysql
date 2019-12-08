@@ -83,6 +83,14 @@ ON M.empNumber = S.mentorNumber
 ORDER BY E.empName, M.empName;
 
 -- Customer_Sales_v
+CREATE VIEW Customer_Sales_V AS
+SELECT customerName, YEAR(orderDateTime) AS "YEAR", FORMAT(SUM(price), 2) as "AMOUNT"
+FROM mmOrder
+NATURAL JOIN OrderDetails
+NATURAL JOIN MenuMenuItem
+NATURAL JOIN Customer
+GROUP BY year(orderDateTime)
+ORDER BY customerName;                                                                                                             
 
 -- Customer_Value_v
 CREATE VIEW Customer_Value_v AS
