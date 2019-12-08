@@ -11,8 +11,6 @@ NOT IN(SELECT MenuItem.menuItemName as "MenuItem"
 FROM MenuItem INNER JOIN MenuMenuItem
 ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Lunch"); 
 
-SELECT * FROM MenuItem_v;
-
 CREATE VIEW MenuItem_eve_v AS
 SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice", CONVERT(MenuMenuItem.price,decimal(10,2)) AS "Evening Price",MenuMenuItem.itemSize AS "Evening Size" 
 FROM MenuItem INNER JOIN MenuMenuItem
@@ -24,8 +22,6 @@ ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuItem.menuItemName
 NOT IN(SELECT MenuItem.menuItemName as "MenuItem"
 FROM MenuItem INNER JOIN MenuMenuItem
 ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Evening");
-
- SELECT * FROM MenuItem_kids_v;
 
 CREATE VIEW MenuItem_kids_v AS
 SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice",CONVERT(MenuMenuItem.price,decimal(10,2)) AS "Childrens' Price",MenuMenuItem.itemSize AS "Childrens' Size" 
