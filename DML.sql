@@ -229,4 +229,10 @@ INSERT INTO OrderDetails
             ('Childrens', 'Celery Sticks', 1, 5), ('Childrens', 'Shabu Shabu Udon', 9, 1);
 	    
 INSERT INTO Mentorship
-    VALUES ('Celery sticks', 6, 5, '2019-12-01', '2019-12-07', 'Expert');	    
+    VALUES ('Celery sticks', 6, 5, '2019-12-01', '2019-12-07', 'Expert');
+    
+INSERT INTO mmOrder
+    VALUES (14, 2000000006, '2019-03-10 12:30:00', 'Credit Card', TRUE);
+
+INSERT INTO OrderDetails
+    VALUES ('Lunch', 'Pork', 14, 1);
