@@ -32,4 +32,13 @@ ON M.empNumber = S.mentorNumber
 ORDER BY E.empName, M.empName;
 
 -- Customer_Sales_v
+
 -- Customer_Value_v
+CREATE VIEW Customer_Value_v AS
+SELECT customerName AS "Customer", FORMAT(SUM(price), 2) AS "Total" FROM mmOrder
+NATURAL JOIN OrderDetails
+NATURAL JOIN MenuMenuItem
+NATURAL JOIN Customer
+WHERE YEAR(orderDateTime) = YEAR(NOW())
+GROUP BY customerName
+ORDER BY Total DESC;
