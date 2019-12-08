@@ -123,6 +123,13 @@ SELECT empName, menuItemName FROM Employee
 INNER JOIN Mentorship ON Employee.empNumber = Mentorship.mentorNumber
 WHERE Mentorship.mentorNumber IN
 (SELECT mentorNumber FROM max_mentor_v);
+                                 
+-- Query M
+SELECT menuItemName, COUNT(menuItemName) "Amount Sous Chefs Who've Learned"
+FROM MenuItem NATURAL JOIN Mentorship
+GROUP BY menuItemName
+ORDER BY COUNT(menuItemName) ASC
+LIMIT 3;                                 
 
 -- Query N
 SELECT customerName, organizationName FROM CustomerAccount
