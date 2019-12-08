@@ -94,14 +94,23 @@ GROUP BY m
 ORDER BY COUNT(*) DESC;
 
 -- Query J              
-SELECT customerName, SUM(price) AS "Total" FROM mmOrder
+SELECT customerName, FORMAT(SUM(price), 2) AS "Total" FROM mmOrder
 NATURAL JOIN OrderDetails
 NATURAL JOIN MenuMenuItem
 NATURAL JOIN Customer
 WHERE YEAR(orderDateTime) = YEAR(NOW())
 GROUP BY customerID
 ORDER BY Total DESC
-LIMIT 3; 
+LIMIT 3;
+        
+-- Query K                                 
+SELECT menuItemName, FORMAT(SUM(price), 2) AS "Total" FROM mmOrder
+NATURAL JOIN OrderDetails
+NATURAL JOIN MenuMenuItem
+WHERE YEAR(orderDateTime) = YEAR(NOW())
+GROUP BY menuItemName
+ORDER BY Total DESC
+LIMIT 5;                                 
               
 -- Query L DRAFT - literal statement works
 SELECT empName, menuItemName FROM Employee
