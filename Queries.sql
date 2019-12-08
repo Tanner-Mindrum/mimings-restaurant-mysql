@@ -136,3 +136,9 @@ INNER JOIN Customer on CorporationAccount.customerID = Customer.customerID;
 
 -- Query O
 SELECT * FROM MenuMenuItem;
+
+-- Query P1: List the orders where waivers have been signed and make sure only signed waivers order Oh My God spiciness
+SELECT waiverSigned, spiceName
+FROM mmOrder
+NATURAL JOIN OrderDetails
+NATURAL JOIN MenuItem;                                 
