@@ -35,7 +35,21 @@ LIMIT 3;
 SELECT empName, COUNT(*) AS "Items Learned", GROUP_CONCAT(menuItemName)
 FROM Mentorship NATURAL JOIN Employee
 GROUP BY empNumber 
-HAVING COUNT(*) >= 3;                                                                                          
+HAVING COUNT(*) >= 3;
+                                                                                            
+-- Query D
+CREATE VIEW sous_items_v AS
+SELECT empNumber, count(menuItemName), group_concat(menuItemName) AS "Items"
+FROM Mentorship
+GROUP BY empNumber
+HAVING count(menuItemName) >= 3;
+
+SELECT empName FROM Employee
+WHERE empNumber IN
+(SELECT DISTINCT e1.empNumber FROM sous_items_v e1
+WHERE EXISTS (SELECT empNumber FROM sous_items_v e2
+              WHERE e1.Items = e2.Items
+              GROUP BY Items HAVING COUNT(empNumber) > 1));                                                                                            
 
 -- Query F
 SELECT menuItemName AS "Item Name", 
