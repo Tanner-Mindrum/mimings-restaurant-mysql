@@ -83,6 +83,12 @@ ON M.empNumber = S.mentorNumber
 ORDER BY E.empName, M.empName;
 
 -- Customer_Sales_v
+CREATE View Customer_Sales_V AS
+SELECT customerName, ROUND(SUM(MenuMenuItem.price * Quantity),2) AS "Yearly Spending", Year(mmOrder.orderDateTime)
+FROM MimingsAccount NATURAL JOIN Customer NATURAL JOIN mmOrder NATURAL JOIN OrderDetails NATURAL JOIN MenuMenuItem
+GROUP BY customerName, Year(mmOrder.orderDateTime)
+ORDER BY OrderDateTime DESC;
+
 
 -- Customer_Value_v
 CREATE VIEW Customer_Value_v AS
