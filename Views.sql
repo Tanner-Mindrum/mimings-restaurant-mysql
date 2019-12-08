@@ -1,4 +1,59 @@
 -- MenuItem_v
+CREATE VIEW MenuItem_lunch_v AS
+SELECT MenuItem.menuItemName as "MenuItem", MenuItem.spiceName AS "Spice", CONVERT(MenuMenuItem.price,decimal(10,2)) AS "Lunch Price",MenuMenuItem.itemSize AS "Lunch Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Lunch"
+UNION
+SELECT MenuItem.menuItemName as "MenuItem", MenuItem.spiceName AS "Spice", 'N/A' AS "Lunch Price",'N/A' AS "Lunch Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuItem.menuItemName
+NOT IN(SELECT MenuItem.menuItemName as "MenuItem"
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Lunch"); 
+
+SELECT * FROM MenuItem_v;
+
+CREATE VIEW MenuItem_eve_v AS
+SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice", CONVERT(MenuMenuItem.price,decimal(10,2)) AS "Evening Price",MenuMenuItem.itemSize AS "Evening Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Evening"
+UNION
+SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice", 'N/A' AS "Evening Price",'N/A' AS "Evening Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuItem.menuItemName
+NOT IN(SELECT MenuItem.menuItemName as "MenuItem"
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Evening");
+
+ SELECT * FROM MenuItem_kids_v;
+
+CREATE VIEW MenuItem_kids_v AS
+SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice",CONVERT(MenuMenuItem.price,decimal(10,2)) AS "Childrens' Price",MenuMenuItem.itemSize AS "Childrens' Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Childrens"
+UNION
+SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice", 'N/A' AS "Childrens' Price",'N/A' AS "Childrens' Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuItem.menuItemName
+NOT IN(SELECT MenuItem.menuItemName as "MenuItem"
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Childrens");
+
+CREATE VIEW MenuItem_sund_v AS
+SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice", CONVERT(MenuMenuItem.price,decimal(10,2)) AS "Sunday Brunch Buffet Price",MenuMenuItem.itemSize AS "Sunday Brunch Buffet Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Sunday brunch buffet"
+UNION
+SELECT MenuItem.menuItemName as "MenuItem",MenuItem.spiceName AS "Spice", 'N/A' AS "Sunday Brunch Buffet Price",'N/A' AS "Sunday Brunch Buffet Size" 
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuItem.menuItemName
+NOT IN(SELECT MenuItem.menuItemName as "MenuItem"
+FROM MenuItem INNER JOIN MenuMenuItem
+ON MenuItem.menuItemName=MenuMenuItem.menuItemName AND MenuMenuItem.menuName="Sunday brunch buffet");
+
+-- Joining the views
+CREATE VIEW MenuItem_v AS
+SELECT * FROM MenuItem_lunch_v  Natural Join MenuItem_eve_v Natural Join MenuItem_kids_v Natural Join MenuItem_sund_v;
 
 -- Customer_addresses_v
 CREATE VIEW Customer_addresses_v AS
