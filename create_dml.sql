@@ -247,20 +247,20 @@ INSERT INTO ToGo (orderID, pickUpTime, orderReadyTime)
 INSERT INTO WaitStaff (empNumber, tips)
     VALUES (7, 20.00), (8, 25.00);
 
-INSERT INTO mmOrder (orderID, customerID, orderDateTime, paymentType, waiverSigned) 
+INSERT INTO mmOrder (orderID, customerID, orderDateTime, paymentType, rewardsPointsUsed, waiverSigned) 
 	VALUES
-	(001, 2000000005, '2013-07-11 09:25:10','Credit Card', 10, 0),
-	(002, 2000000005, '2013-07-13 13:20:10','CreditCard', 19, 0),
-	(003, 2000000001, '2014-07-13 09:13:10','Check', 18, 0),
+	(001, 2000000005, '2013-07-11 09:25:10','Credit Card', null, 0),
+	(002, 2000000005, '2013-07-13 13:20:10','CreditCard', null, 0),
+	(003, 2000000001, '2014-07-13 09:13:10','Check', null, 0),
 	(004, null, '2014-07-13 09:25:10', 'Cash', null, 1),
-	(005, 2000000002, '2015-08-12 20:39:10', 'Credit Card', 17, 0),
-	(006, 2000000003, '2015-10-30 10:55:10', 'Credit Card', 17, 1),
-	(007, 2000000004, '2016-12-02 09:12:10', 'Credit Card', 16, 0),
-	(008, 2000000006, '2017-01-21 09:25:10', 'Credit Card', 15, 0),
-	(009, 2000000007, '2017-05-13 14:43:10', 'Credit Card', 14, 0),
-	(010, 2000000002, '2018-09-01 22:56:10', 'Credit Card', 13, 0),
-	(011, 2000000006, '2019-03-09 12:34:10', 'Credit Card', 12, 1),
-	(012, 2000000005, '2019-04-06 09:45:10', 'Credit Card', 11, 0),
-	(013, null, '2019-09-01 09:22:10', 'Creadit Card', 10, 0),
-	(14, 2000000006, '2019-03-10 12:30:00', 'Credit Card', 9, TRUE);
+	(005, 2000000002, '2015-08-12 20:39:10', 'Credit Card', null, 0),
+	(006, 2000000003, '2015-10-30 10:55:10', 'Credit Card', null, 1),
+	(007, 2000000004, '2016-12-02 09:12:10', 'Credit Card', null, 0),
+	(008, 2000000006, '2017-01-21 09:25:10', 'Credit Card', null, 0),
+	(009, 2000000007, '2017-05-13 14:43:10', 'Credit Card', null, 0),
+	(010, 2000000002, '2018-09-01 22:56:10', 'Credit Card', null, 0),
+	(011, 2000000006, '2019-03-09 12:34:10', 'Credit Card', null, 1),
+	(012, 2000000005, '2019-04-06 09:45:10', 'Credit Card', null, 0),
+	(013, null, '2019-09-01 09:22:10', 'Creadit Card', null, 0),
+	(14, 2000000006, '2019-03-10 12:30:00', 'Credit Card', null, TRUE);
 	   
