@@ -36,18 +36,14 @@ GROUP BY empNumber
 HAVING COUNT(*) >= 3;
                                                                                             
 -- Query D
-CREATE VIEW sous_items_v AS
-SELECT empNumber, count(menuItemName), group_concat(menuItemName) AS "Items"
-FROM Mentorship
+SELECT empName FROM Employee NATURAL JOIN (
+SELECT e1.empNumber FROM Mentorship e1
+WHERE EXISTS (SELECT empNumber, menuItemName FROM Mentorship e2
+              WHERE e1.menuItemName = e2.menuItemName
+              GROUP BY menuItemName
+              HAVING COUNT(empNumber) > 1)
 GROUP BY empNumber
-HAVING count(menuItemName) >= 3;
-
-SELECT empName FROM Employee
-WHERE empNumber IN
-(SELECT DISTINCT e1.empNumber FROM sous_items_v e1
-WHERE EXISTS (SELECT empNumber FROM sous_items_v e2
-              WHERE e1.Items = e2.Items
-              GROUP BY Items HAVING COUNT(empNumber) > 1));
+HAVING COUNT(empNumber) > 3) AS a;
               
 -- Query E
 SELECT menuItemName FROM OrderDetails
