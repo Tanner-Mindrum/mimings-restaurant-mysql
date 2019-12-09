@@ -103,3 +103,18 @@ BEGIN
 END //
 DELIMITER ;
                                                     
+-- Trigger for tables not being over populated
+DROP TRIGGER IF EXISTS table_size_limit;
+DELIMITER //
+CREATE TRIGGER table_size_limit
+BEFORE INSERT ON Tables
+FOR EACH ROW
+BEGIN
+        IF (SELECT COUNT(*) FROM EatIn
+        WHERE EatIn.partySize > NEW.tableCapacity AND NEW.orderID = EatIn.orderID > 0)
+        THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'The given party is too large to sit at this table.';
+    END IF;
+END //
+DELIMITER ;
