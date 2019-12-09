@@ -142,3 +142,8 @@ SELECT waiverSigned, spiceName
 FROM mmOrder
 NATURAL JOIN OrderDetails
 NATURAL JOIN MenuItem;                                 
+
+-- Query P2: Show that orders made from the Childrens menu have only been ordered by those 12 or younger.                                 
+SELECT customerName, age, menuName FROM OrderDetails
+NATURAL JOIN Customer NATURAL JOIN mmOrder
+WHERE menuName = 'Childrens';                                 
