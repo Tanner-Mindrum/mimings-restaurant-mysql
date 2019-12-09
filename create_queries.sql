@@ -79,11 +79,9 @@ SELECT customerName, amountSpent FROM MimingsAccount NATURAL JOIN Customer
 ORDER BY amountSpent DESC;
 
 -- Query I              
-CREATE VIEW cust_month_v AS
-SELECT customerID, customerName, month(orderDateTime) m
-FROM mmOrder NATURAL JOIN EatIn NATURAL JOIN Customer;
-
-SELECT customerName FROM cust_month_v
+SELECT customerName FROM 
+(SELECT customerID, customerName, month(orderDateTime) m
+FROM mmOrder NATURAL JOIN EatIn NATURAL JOIN Customer) as A
 GROUP BY m
 ORDER BY COUNT(*) DESC;
 
@@ -113,7 +111,7 @@ GROUP BY mentorNumber
 ORDER BY c DESC
 LIMIT 1;
 
-SELECT empName, menuItemName FROM Employee
+SELECT empName, group_concat(menuItemName) FROM Employee
 INNER JOIN Mentorship ON Employee.empNumber = Mentorship.mentorNumber
 WHERE Mentorship.mentorNumber IN
 (SELECT mentorNumber FROM max_mentor_v);
