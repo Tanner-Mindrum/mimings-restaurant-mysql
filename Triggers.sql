@@ -25,9 +25,8 @@ FOR EACH ROW
 BEGIN
         IF (SELECT COUNT(*) FROM Customer
         INNER JOIN mmOrder ON Customer.customerID = mmOrder.customerID
-        INNER JOIN OrderDetails ON mmOrder.orderID = OrderDetails.orderID
-        WHERE OrderDetails.orderID = NEW.orderID AND Customer.age > 12 AND
-        NEW.menuName = 'Childrens' > 0)
+        WHERE mmOrder.orderID = NEW.orderID AND Customer.age > 12 > 0) AND
+        (NEW.menuName = 'Childrens')
         THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'You must be 12 years old or younger to order from the childrens menu.';
