@@ -50,18 +50,20 @@ BEGIN
 END //
 DELIMITER ;
 
--- Business rule 3 **** Requires DDL update
+-- Business rule 3
 DROP TRIGGER IF EXISTS waiver_check;
 DELIMITER //
 CREATE TRIGGER waiver_check
 BEFORE INSERT ON OrderDetails
 FOR EACH ROW
 BEGIN
-        IF (SELECT COUNT(*) FROM Customer
-        INNER JOIN mmOrder ON Customer.customerID = mmOrder.customerID
+        IF (SELECT COUNT(*) FROM mmOrder
         INNER JOIN OrderDetails ON mmOrder.orderID = OrderDetails.orderID
-        WHERE OrderDetails.orderID = NEW.orderID AND mmOrder.waiverSigned = false
-        AND NEW.spiciness = 'Oh My God' > 0)
+        WHERE OrderDetails.orderID = NEW.orderID AND mmOrder.waiverSigned = false > 0)
+        AND
+        (SELECT COUNT(*) FROM OrderDetails
+        INNER JOIN MenuItem ON OrderDetails.menuItemName = MenuItem.menuItemName
+        WHERE NEW.menuItemName = OrderDetails.menuItemName AND MenuItem.spiceName = 'Oh My God' > 0)
         THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'You must first sign a waiver to order the Oh My God spiciness level.';
