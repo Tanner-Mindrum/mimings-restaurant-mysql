@@ -20,9 +20,9 @@ INSERT INTO Customer(customerID, customerName, email, age)
 	(2000000002, 'Shrek', 'Shrek221@gmail.com', 43),
 	(2000000003, 'Perry the Plataups', 'perry42@secretAgent.com', 14),
 	(2000000004, 'Einstein', 'Genius@email.com', 150),
-	(2000000005, 'Steven', 'Steve32@gmail.com', 20),
+	(2000000005, 'Steven', 'Steve32@gmail.com', 12),
 	(2000000006, 'Justin', 'Justin75@gmail.com', 21),
-	(2000000007, 'Oscar', 'Oscar11@gmail.com', 20);
+	(2000000007, 'Oscar', 'Oscar11@gmail.com', 12);
 
 INSERT INTO CustomerAccount (customerID, snailMail)
  VALUES
