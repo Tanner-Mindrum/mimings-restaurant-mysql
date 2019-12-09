@@ -35,17 +35,17 @@ BEGIN
 END //
 DELIMITER ;
 
--- Business rule 2 **** Requires DDL update
+-- Business rule 2
 DROP TRIGGER IF EXISTS MAX_reward_check;
 DELIMITER //
 CREATE TRIGGER MAX_reward_check
-BEFORE INSERT ON mmDetails
+BEFORE INSERT ON mmOrder
 FOR EACH ROW
 BEGIN
-        IF (NEW.rewardsUsed > 20)
+        IF (NEW.rewardsPointsUsed > 20)
         THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'You mmay not use more than $20 in Mimings rewards points per purchase.';
+        SET MESSAGE_TEXT = 'You may not use more than $20 in Mimings rewards points per purchase.';
     END IF;
 END //
 DELIMITER ;
@@ -81,7 +81,7 @@ BEGIN
         IF (NEW.pickUpTime - NEW.orderReadyTime > TIME('00:15:00'))
         THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Oredrs must be picked up within 15 minutes of completion.';
+        SET MESSAGE_TEXT = 'Orders must be picked up within 15 minutes of completion.';
     END IF;
 END //
 DELIMITER ;
